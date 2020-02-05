@@ -8,4 +8,29 @@
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui, voluptate? A sequi possimus velit dolores tenetur ipsum suscipit aspernatur, quibusdam quaerat enim qui nesciunt maiores. Numquam voluptatibus magni in culpa?</p>
      </div>
 
+     <div class="container">
+        <h2>Last home</h2>
+        <div class="row flex">
+           {% for property in properties %}
+           <div class="col-3">
+              <div class="card">
+                 <div class="card-body">
+                    <h5 class="card-title">
+                        <a href="#">{{ property.title }}</a>
+                    </h5>
+                    <p class="card-text">
+                     {{ property.city }} ({{ property.zipcode }})
+                    </p>
+                    <div class="text-primary">
+                     {{ property.formattedPrice }} € 
+                    </div>
+                 </div>
+              </div>
+           </div>
+
+
+           {% endfor %}
+        </div>
+     </div>
+
 {% endblock %}

@@ -1,36 +1,41 @@
 {% extends "base.html.twig" %}
 
-{% block title 'ImmoConcept'%}
+{% block title 'Hearthstone Partners'%}
 
 {% block body %}
      <div class="jumbotron text-center">
-        <h1>ImmoConcept</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui, voluptate? A sequi possimus velit dolores tenetur ipsum suscipit aspernatur, quibusdam quaerat enim qui nesciunt maiores. Numquam voluptatibus magni in culpa?</p>
+        <h1>Hearthstone Partners</h1>
+        <p>Découvrez nos biens à vendre</p>
      </div>
 
      <div class="container">
-        <h2>Dernier bien</h2>
-        <div class="row flex">
+        <div class="row">
            {% for property in properties %}
-           <div class="col-3">
-              <div class="card">
-                 <div class="card-body">
-                    <h5 class="card-title">
-                        <a href="{{path('property.show', {id: property.id, slug: property.slug})}}">{{ property.title }}</a>
-                    </h5>
-                    <p class="card-text">
-                     {{ property.city }} ({{ property.zipcode }})
-                    </p>
-                    <div class="text-primary" style="font-weight: bold; font-size: 1rem;">
-                     {{ property.formattedPrice }} € 
-                    </div>
-                 </div>
-              </div>
-           </div>
-
-
+            <div class="col-md-4">
+               {% include 'property/_property.html.twig' %}
+            </div>
            {% endfor %}
         </div>
+
+            <div class="pagination justify-content-center">
+            {{ knp_pagination_render(properties) }}
+            </div>
      </div>
+
+    <div class="jumbotron">
+        <div class="container">
+            <div class="row">
+                        <div class="col-md-8">
+                        
+                        </div>
+
+                        <div class="col-md-4">
+                            
+                        </div>
+            </div>
+        </div>
+    </div>
+
+      
 
 {% endblock %}

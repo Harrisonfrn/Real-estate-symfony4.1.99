@@ -14,7 +14,9 @@
         "build": "encore production --progress"
     },
     "dependencies": {
+        "cross-fetch": "^3.0.4",
         "jquery": "^3.5.0",
+        "node-fetch": "^2.6.0",
         "select2": "^4.0.13"
     }
 }

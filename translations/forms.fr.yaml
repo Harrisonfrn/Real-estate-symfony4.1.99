@@ -1,6 +1,6 @@
 City: Ville
 Address: Adresse
-Zip code: Code Postal
+Zip code: C.Postal
 Title: Titre
 Surface: Surface
 Price: Prix
@@ -10,3 +10,4 @@ Heat: Chauffage
 Floor: Étages
 Sold: Vendu
 Description: Description
+Picture files: Images

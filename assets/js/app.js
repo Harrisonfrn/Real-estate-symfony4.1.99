@@ -8,8 +8,18 @@
 import $ from 'jquery'
 import '../css/app.css'
 import 'select2'
+import 'slick-carousel'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
 
 const fetch = require('node-fetch')
+
+$('[data-slider]').slick({
+  dots: true,
+  infinite: true,
+  speed: 500,
+  fade: true
+})
 
 $('select').select2()
 

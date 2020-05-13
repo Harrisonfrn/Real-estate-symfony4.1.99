@@ -17,6 +17,7 @@
         "cross-fetch": "^3.0.4",
         "jquery": "^3.5.0",
         "node-fetch": "^2.6.0",
-        "select2": "^4.0.13"
+        "select2": "^4.0.13",
+        "slick-carousel": "^1.8.1"
     }
 }

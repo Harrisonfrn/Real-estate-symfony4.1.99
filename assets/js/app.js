@@ -11,6 +11,34 @@ import 'select2'
 import 'slick-carousel'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
+import Places from 'places.js'
+import Map from './modules/map'
+
+Map.init()
+
+const inputAddress = document.querySelector('#property_address')
+if (inputAddress !== null) {
+  const place = Places({
+    container: inputAddress
+  })
+  place.on('change', e => {
+    document.querySelector('#property_city').value = e.suggestion.city
+    document.querySelector('#property_zip_code').value = e.suggestion.postcode
+    document.querySelector('#property_lat').value = e.suggestion.latlng.lat
+    document.querySelector('#property_lng').value = e.suggestion.latlng.lng
+  })
+}
+
+const searchAddress = document.querySelector('#search_address')
+if (searchAddress !== null) {
+  const place = Places({
+    container: searchAddress
+  })
+  place.on('change', e => {
+    document.querySelector('#lat').value = e.suggestion.latlng.lat
+    document.querySelector('#lng').value = e.suggestion.latlng.lng
+  })
+}
 
 const fetch = require('node-fetch')
 
@@ -30,7 +58,7 @@ $contactButton.click(e => {
   $contactButton.slideUp()
 })
 
-// Supression des éléments(img)
+// Suppression des éléments
 document.querySelectorAll('[data-delete]').forEach(a => {
   a.addEventListener('click', e => {
     e.preventDefault()
@@ -46,10 +74,10 @@ document.querySelectorAll('[data-delete]').forEach(a => {
         if (data.success) {
           a.parentNode.parentNode.removeChild(a.parentNode)
         } else {
-          alertMessage(data.error)
+          alert(data.error)
         }
       })
-      .catch(e => alertMessage(e))
+      .catch(e => alert(e))
   })
 })
 

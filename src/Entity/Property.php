@@ -126,6 +126,7 @@ class Property
      */
     private $lat;
 
+
     /**
      * @ORM\Column(type="float", scale=4, precision=7)
      */

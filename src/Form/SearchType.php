@@ -39,7 +39,13 @@ class SearchType extends AbstractType
                 'choice_label' => 'name',
                 'multiple' => true
             ])
+            ->add('address', null, [
+                'label' => false,
+                'required' => false
+            ])
             ->add('distance', ChoiceType::class, [
+                'label' => false,
+                'required' => false,
                 'choices' => [
                     '10 km' => 10,
                     '1000 km' => 1000

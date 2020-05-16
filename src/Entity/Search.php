@@ -34,6 +34,11 @@ class Search  {
     private $lat;
 
     /**
+     * @var string|null
+     */
+    private $address;
+
+    /**
      * @var float|null
      */
     private $lng;
@@ -183,6 +188,30 @@ class Search  {
     public function setLng($lng)
     {
         $this->lng = $lng;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of address
+     *
+     * @return  string|null
+     */ 
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * Set the value of address
+     *
+     * @param  string|null  $address
+     *
+     * @return  self
+     */ 
+    public function setAddress($address)
+    {
+        $this->address = $address;
 
         return $this;
     }

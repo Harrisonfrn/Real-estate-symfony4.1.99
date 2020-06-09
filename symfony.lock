@@ -2,6 +2,15 @@
     "beberlei/doctrineextensions": {
         "version": "v1.2.6"
     },
+    "cache/adapter-common": {
+        "version": "1.1.0"
+    },
+    "cache/apcu-adapter": {
+        "version": "1.0.0"
+    },
+    "cache/tag-interop": {
+        "version": "1.0.0"
+    },
     "cocur/slugify": {
         "version": "v4.0.0"
     },
@@ -159,6 +168,9 @@
     },
     "psr/log": {
         "version": "1.1.2"
+    },
+    "psr/simple-cache": {
+        "version": "1.0.1"
     },
     "sensio/framework-extra-bundle": {
         "version": "5.2",
@@ -443,6 +455,9 @@
     },
     "symfony/yaml": {
         "version": "v4.1.12"
+    },
+    "twig/cache-extension": {
+        "version": "1.4.0"
     },
     "twig/twig": {
         "version": "v2.12.3"

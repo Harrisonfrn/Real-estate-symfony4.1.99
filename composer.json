@@ -6,6 +6,7 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "beberlei/doctrineextensions": "^1.2",
+        "cache/apcu-adapter": "^1.0",
         "cocur/slugify": "^4.0",
         "fzaninotto/faker": "^1.9",
         "knplabs/knp-paginator-bundle": "^5.1",
@@ -31,6 +32,8 @@
         "symfony/web-link": "4.4.*",
         "symfony/webpack-encore-bundle": "^1.7",
         "symfony/yaml": "4.4.*",
+        "twig/cache-extension": "^1.4",
+        "twig/twig": "^2.0",
         "vich/uploader-bundle": "^1.13"
     },
     "require-dev": {

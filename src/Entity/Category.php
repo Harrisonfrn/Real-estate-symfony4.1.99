@@ -7,10 +7,9 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\OptionRepository")
- * @ORM\Table(name="`option`")
+ * @ORM\Entity(repositoryClass="App\Repository\CategoryRepository")
  */
-class Option
+class Category
 {
     /**
      * @ORM\Id()
@@ -25,7 +24,7 @@ class Option
     private $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Property", mappedBy="options")
+     * @ORM\OneToMany(targetEntity="App\Entity\Property", mappedBy="category")
      */
     private $properties;
 
@@ -67,6 +66,7 @@ class Option
     {
         if (!$this->properties->contains($property)) {
             $this->properties[] = $property;
+            $property->setCategory($this);
         }
 
         return $this;
@@ -76,6 +76,10 @@ class Option
     {
         if ($this->properties->contains($property)) {
             $this->properties->removeElement($property);
+            // set the owning side to null (unless already changed)
+            if ($property->getCategory() === $this) {
+                $property->setCategory(null);
+            }
         }
 
         return $this;

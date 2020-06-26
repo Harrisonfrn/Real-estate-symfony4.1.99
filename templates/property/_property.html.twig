@@ -10,14 +10,14 @@
     <div class="card-body">
         <h5 class="card-title">
             <a href="{{path('property.show', {id: property.id, slug: property.slug})}}">
-                {{ property.title }}
+                {{ property.title }} - {{property.surface}} m²
             </a>
         </h5>
         <p class="card-text">
-            {{property.surface}} m² - {{ property.city }} ({{ property.zipcode }})
+            {{ property.city }} ({{ property.zipcode }})
         </p>
-        <div class="text-primary" style="font-weight: bold; font-size: 1rem;">
-                     {{ property.formattedPrice }} € 
+        <div class="text-primary formattedPrice" style="font-weight: bold; font-size: 1rem;">
+            {{ property.formattedPrice }} € 
         </div>
     </div>
 </div>

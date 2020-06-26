@@ -132,12 +132,23 @@ class Property
      */
     private $lng;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="properties")
+     */
+    private $category;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Users", inversedBy="properties")
+     */
+    private $users;
+
     public function __construct()
     {
         $this->created_at = new \DateTime();
         $this->options = new ArrayCollection();
         $this->pictures = new ArrayCollection();
     }
+    
 
     public function getId(): ?int
     {
@@ -440,6 +451,30 @@ class Property
     public function setLng(float $lng): self
     {
         $this->lng = $lng;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    public function getUsers(): ?Users
+    {
+        return $this->users;
+    }
+
+    public function setUsers(?Users $users): self
+    {
+        $this->users = $users;
 
         return $this;
     } 

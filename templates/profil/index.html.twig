@@ -1,20 +1,33 @@
-{% extends 'base.html.twig' %}
+{% extends 'profil_base.html.twig' %}
 
-{% block title %}Hello ProfilController!{% endblock %}
+{% block title %}Hearthstone Partner's
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+	<div class="grix xs4 container">
+		{% for message in app.flashes('message')  %}
+			<div class="col-xs4">
+				<div class="p-3 my-2 rounded-2 success">{{message}}
+				</div>
+			</div>
+		{% endfor %}
+		<div class="col-xs4">
+			<h1>Profil de
+				{{app.user.firstname}}</h1>
+		</div>
+		<div class="col-xs1">Nom:
+			{{app.user.name}}</div>
+		<div class="col-xs1">Prénom:
+			{{app.user.firstname}}</div>
+		<div class="col-xs1">Email:
+			{{app.user.email}}</div>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/Users/HarrisonPro/Desktop/real-estate/src/Controller/ProfilController.php'|file_link(0) }}">src/Controller/ProfilController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/Users/HarrisonPro/Desktop/real-estate/templates/profil/index.html.twig'|file_link(0) }}">templates/profil/index.html.twig</a></code></li>
-    </ul>
-</div>
+		<div class="col-xs4">
+			<a href="{{path('profil_edit')}}" class="btn blue push">Modifier le profil</a>
+			<a href="{{path('profil_edit_pass')}}" class="btn blue push">Modifier le mot de passe</a>
+		</div>
+	</div>
+
+
 {% endblock %}

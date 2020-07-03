@@ -1,25 +1,34 @@
-
 {% cache 'property' ~ property.id property.updatedAt.timestamp|default(900) %}
 
 <div class="card mb-4">
-        {% if property.picture %}
-            <img src="{{ vich_uploader_asset(property.picture, 'imageFile') | imagine_filter('thumb')}}" alt="card-img-top" style="width: 100%; height: auto;">
-        {% else %}
-            <img src="{{ '/images/empty.jpg' | imagine_filter('thumb')}}" alt="card-img-top" style="width: 100%; height: auto;">
-        {% endif %}
-    <div class="card-body">
-        <h5 class="card-title">
-            <a href="{{path('property.show', {id: property.id, slug: property.slug})}}">
-                {{ property.title }} - {{property.surface}} m²
-            </a>
-        </h5>
-        <p class="card-text">
-            {{ property.city }} ({{ property.zipcode }})
-        </p>
-        <div class="text-primary formattedPrice" style="font-weight: bold; font-size: 1rem;">
-            {{ property.formattedPrice }} € 
-        </div>
-    </div>
+	{% if property.picture %}
+		<img src="{{ vich_uploader_asset(property.picture, 'imageFile') | imagine_filter('thumb')}}" alt="card-img-top" style="width: 100%; height: auto;">
+	{% else %}
+		<img src="{{ '/images/empty.jpg' | imagine_filter('thumb')}}" alt="card-img-top" style="width: 100%; height: auto;">
+	{% endif %}
+	<div class="card-body">
+		<h5 class="card-title">
+			<a href="{{path('property.show', {id: property.id, slug: property.slug})}}">
+				{{ property.title }}
+				-
+				{{property.surface}}
+				m²
+			</a>
+		</h5>
+		<p class="card-text">
+			{{ property.city }}
+			({{ property.zipcode }})
+		</p>
+		<div class="text-primary formattedPrice" style="font-weight: bold; font-size: 1rem;">
+			{{ property.formattedPrice }}
+			€
+			<a href="#" class="btn-link">
+				<i class="fa fa-heart-o">
+					<p>LIKE</p>
+				</i>
+			</a>
+		</div>
+	</div>
 </div>
 
 {% endcache %}

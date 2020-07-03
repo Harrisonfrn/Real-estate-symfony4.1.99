@@ -142,11 +142,17 @@ class Property
      */
     private $users;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\PropertyLike", mappedBy="property")
+     */
+    private $likes;
+
     public function __construct()
     {
         $this->created_at = new \DateTime();
         $this->options = new ArrayCollection();
         $this->pictures = new ArrayCollection();
+        $this->likes = new ArrayCollection();
     }
     
 
@@ -475,6 +481,37 @@ class Property
     public function setUsers(?Users $users): self
     {
         $this->users = $users;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|PropertyLike[]
+     */
+    public function getLikes(): Collection
+    {
+        return $this->likes;
+    }
+
+    public function addLike(PropertyLike $like): self
+    {
+        if (!$this->likes->contains($like)) {
+            $this->likes[] = $like;
+            $like->setProperty($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLike(PropertyLike $like): self
+    {
+        if ($this->likes->contains($like)) {
+            $this->likes->removeElement($like);
+            // set the owning side to null (unless already changed)
+            if ($like->getProperty() === $this) {
+                $like->setProperty(null);
+            }
+        }
 
         return $this;
     } 

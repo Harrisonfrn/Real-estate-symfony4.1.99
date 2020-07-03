@@ -3,143 +3,148 @@ Home
     navBar
 */
 
-img{
-    max-width: 100%;
+img {
+  max-width: 100%;
 }
 
 .navbar-brand {
-    margin-right: 0px;
+  margin-right: 0px;
 }
 
-.navbar{
-    background-color: #FFFFFF!important;
-    display: flex;
-    flex-direction: column;
+.navbar {
+  background-color: #ffffff !important;
+  display: flex;
+  flex-direction: column;
 }
 
 .navbar-dark .navbar-brand {
-    color: #163D42;
+  color: #163d42;
 }
 
-
 .navbar-dark .navbar-nav .nav-link {
-    color: #163D42;
-    font-size: 15px;
+  color: #163d42;
+  font-size: 15px;
 }
 
 .navbar-dark .navbar-nav .nav-link:hover {
-    color: #9CB3AB;
+  color: #9cb3ab;
 }
 
-.navbar-dark .navbar-nav .nav-link.active{
-    color: #1e8e9c;
+.navbar-dark .navbar-nav .nav-link.active {
+  color: #1e8e9c;
 }
 
 .navbar-dark .navbar-brand:hover {
-    color: #9CB3AB;
+  color: #9cb3ab;
 }
 
 .navbar-dark .navbar-toggler {
-    color: rgb(41, 77, 81);
-    border-color: rgb(32, 68, 73);
+  color: rgb(41, 77, 81);
+  border-color: rgb(32, 68, 73);
 }
 
-.head{
-    background-color: #F7F4ED;
+.head {
+  background-color: #f7f4ed;
 }
 
-h1.discover{
-    color: #163D42;
-    font-size: 35px;
-    font-family: 'Times New Roman', Times, serif;
+h1.discover {
+  color: #163d42;
+  font-size: 35px;
+  font-family: "Times New Roman", Times, serif;
 }
 
 .btn-primary {
-    color: #fff;
-    background-color: #343a40;
-    border-color: #343a40;
-    margin-right: 1rem;
+  color: #fff;
+  background-color: #343a40;
+  border-color: #343a40;
+  margin-right: 1rem;
 }
 
 .btn-primary:hover {
-    color: #fff;
-    background-color: #1a1c1f;
-    border-color: #1a1c1f;
+  color: #fff;
+  background-color: #1a1c1f;
+  border-color: #1a1c1f;
 }
 
 .btn-map {
-    justify-content: center;
-    display: flex;
-    width: 50%;
-    margin: auto;
+  justify-content: center;
+  display: flex;
+  width: 50%;
+  margin: auto;
 }
-
 
 /*
 Home
     PropertyCard
 */
 
-.card{
-    border-radius: 0;
-    min-height: 23rem!important;
-    border: 0px solid rgba(0,0,0,.125);
+.card {
+  border-radius: 0;
+  min-height: 23rem !important;
+  border: 0px solid rgba(0, 0, 0, 0.125);
 }
 
 h5.card-title {
-    margin-bottom: .75rem;
-    font-size: 17px;
-    color: #163d42!important;
+  margin-bottom: 0.75rem;
+  font-size: 17px;
+  color: #163d42 !important;
 }
 
 a {
-    color: #1a3f44;
-    text-decoration: none;
-    background-color: transparent;
+  color: #1a3f44;
+  text-decoration: none;
+  background-color: transparent;
 }
 
 .card-body {
-    background-color: #F7F4ED;
+  background-color: #f7f4ed;
 }
 
-.text-primary{
-    color: #163d42!important;
+.text-primary {
+  color: #163d42 !important;
 }
 
 /* 
     Pagination
 */
 
-
 /*
     Admin Login
 */
 
-.adminTitle{
-    color: #163d42;
-    font-size: large;
-    margin: 20px 0px 20px 0px;
-
+.adminTitle {
+  color: #163d42;
+  font-size: large;
+  margin: 20px 0px 20px 0px;
 }
 
-.form-admin{
-    width: 50%;
-    height: auto;
-    margin: 100px auto;
-    background: white;
-    border-radius: 3px;
-    box-shadow: 0 0 10px rgba(0,0,0, .4);
-    text-align: center;
-    padding-top: 1px;
+.loginForm {
+  width: 50%;
+  height: auto;
+  margin: 100px auto;
+  background: white;
+  border-radius: 3px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  text-align: center;
+  padding-top: 1px;
 }
 
-.form-group{
-    padding: 10px;
+.form-group {
+  padding: 10px;
 }
 
-button.btn.btn-primary.submitLogin {
-    margin: 0px 0px 10px 0px;
+button.btn.btn-primary {
+  margin: 10px 0px 10px 0px;
 }
 
+a.registerBtn {
+  color: white;
+}
 
+/*
+    Profil NavBar
+*/
 
+nav.navbar.primary.profil {
+  background-color: blue !important;
+}

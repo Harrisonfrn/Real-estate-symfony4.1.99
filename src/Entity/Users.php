@@ -42,12 +42,29 @@ class Users implements UserInterface
      */
     private $properties;
 
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private $name;
+
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private $firstname;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\PropertyLike", mappedBy="user")
+     */
+    private $likes;
+
     public function __construct()
     {
         $this->properties = new ArrayCollection();
+        $this->likes = new ArrayCollection();
     }
 
-    public function __toString() {
+    public function __toString()
+    {
         return $this->email;
     }
 
@@ -154,6 +171,61 @@ class Users implements UserInterface
             // set the owning side to null (unless already changed)
             if ($property->getUsers() === $this) {
                 $property->setUsers(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getFirstname(): ?string
+    {
+        return $this->firstname;
+    }
+
+    public function setFirstname(string $firstname): self
+    {
+        $this->firstname = $firstname;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|PropertyLike[]
+     */
+    public function getLikes(): Collection
+    {
+        return $this->likes;
+    }
+
+    public function addLike(PropertyLike $like): self
+    {
+        if (!$this->likes->contains($like)) {
+            $this->likes[] = $like;
+            $like->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLike(PropertyLike $like): self
+    {
+        if ($this->likes->contains($like)) {
+            $this->likes->removeElement($like);
+            // set the owning side to null (unless already changed)
+            if ($like->getUser() === $this) {
+                $like->setUser(null);
             }
         }
 

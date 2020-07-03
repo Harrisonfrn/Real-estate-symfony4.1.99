@@ -1,73 +1,71 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        
-            <!--<link rel="stylesheet" href="style.css" />-->
-            <title>{% block title %}{% endblock %}</title>
-            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">     
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.12/css/select2.min.css">
-      <link rel="https://cdn.rawgit.com/mfd/f3d96ec7f0e8f034cc22ea73b3797b59/raw/856f1dbb8d807aabceb80b6d4f94b464df461b3e/gotham.css">
-      <!--<link rel="stylesheet" href="{{ asset('build/app.css') }}">-->
-        {% block stylesheets %}
-           {{ encore_entry_link_tags('app') }}
-        {% endblock %}
-    </head>
-    <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <a class="navbar-brand" href="{{ path('home') }}"><img src="/images/HEARTHSTONE_PARTNERS_LOGO.PNG" alt=""></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-          
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav mr-auto">
-             
-                <li class="nav-item">
-                  <a class="nav-link {% if current_menu is defined and current_menu == 'properties' %} active {% endif %}" href="{{ path('property.index') }}">Acheter</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link {% if current_menu is defined and current_menu == 'properties' %} active {% endif %}" href="{{ path('property.index') }}">Produit clé</a>
-                </li>
-                <li class="nav-item">  
-                  <a class="nav-link {% if current_menu is defined and current_menu == 'properties' %} active {% endif %}" href="{{ path('property.index') }}">Qui somme nous ?</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link {% if current_menu is defined and current_menu == 'properties' %} active {% endif %}" href="{{ path('property.index') }}">Contact</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link {% if current_menu is defined and current_menu == 'properties' %} active {% endif %}" href="{{ path('app_login') }}">Mon compte</a>
-                </li>
-                
-                <!--{% if app.user %}
-                  <li class="nav-item">
-                      <a class="nav-link" href="">Gérer les options</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="">Gérer les biens</a>
-                  </li>
-                {% endif %}-->
-              </ul>
+	<head>
 
-                {% if app.user %}
-                  <ul class="nav navbar-bar">
-                    <li class="nav-item">
-                      <a href="{{ path('logout') }}" class="nav-link text-dark">Se déconnecter</a>
-                    </li>
-                  </ul>
-                {% endif %}
+		<!--<link rel="stylesheet" href="style.css" />-->
+		<title>
+			{% block title %}{% endblock %}
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.12/css/select2.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"/>
+		<link
+		rel="https://cdn.rawgit.com/mfd/f3d96ec7f0e8f034cc22ea73b3797b59/raw/856f1dbb8d807aabceb80b6d4f94b464df461b3e/gotham.css">
+		<!--<link rel="stylesheet" href="{{ asset('build/app.css') }}">-->
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('app') }}
+		{% endblock %}
+	</head>
+	<body>
+		<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+			<a class="navbar-brand" href="{{ path('home') }}"><img src="/images/HEARTHSTONE_PARTNERS_LOGO.PNG" alt=""></a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
 
-            </div>
-          </nav>
-        {% block body %} {% endblock %}
-        
-        
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.12/js/select2.min.js"></script>
-        <script src="{{ asset('build/app.js') }}"></script>
-        {% block javascripts %} {{ encore_entry_script_tags('app') }} {% endblock %}
-    </body>
+					<li class="nav-item">
+						<a class="nav-link {% if current_menu is defined and current_menu == 'properties' %} active {% endif %}" href="{{ path('property.index') }}">Acheter</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link {% if current_menu is defined and current_menu == 'properties' %} active {% endif %}" href="{{ path('property.index') }}">Produit clé</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link {% if current_menu is defined and current_menu == 'properties' %} active {% endif %}" href="{{ path('property.index') }}">Qui somme nous ?</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link {% if current_menu is defined and current_menu == 'properties' %} active {% endif %}" href="{{ path('property.index') }}">Contact</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link {% if current_menu is defined and current_menu == 'properties' %} active {% endif %}" href="{{ path('profil') }}">Mon compte</a>
+					</li>
+				</ul>
+
+				{% if app.user %}
+					<ul class="nav navbar-bar">
+						<li class="nav-item">
+							<a href="{{ path('app_logout') }}" class="nav-link text-dark">Se déconnecter</a>
+
+						</li>
+					</ul>
+				{% endif %}
+
+			</div>
+		</nav>
+		{% block body %}{% endblock %}
+
+
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.12/js/select2.min.js"></script>
+		<script src="{{ asset('build/app.js') }}"></script>
+		{% block javascripts %}
+			{{ encore_entry_script_tags('app') }}
+		{% endblock %}
+	</body>
 </html>

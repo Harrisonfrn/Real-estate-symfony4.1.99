@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Category;
 use App\Entity\Option;
 use App\Entity\Property;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -34,6 +35,11 @@ class PropertyType extends AbstractType
                 'multiple' => true,
                 'required' => false
             ])
+            ->add('category', EntityType::class, [
+                'class' => Category::class,
+                'choice_label' => 'name',
+                'required' => false
+            ])
             ->add('pictureFiles', FileType::class, [
                 'required' => false,
                 'multiple' => true
@@ -44,8 +50,7 @@ class PropertyType extends AbstractType
             ->add('zip_code')
             ->add('lat', HiddenType::class)
             ->add('lng', HiddenType::class)
-            ->add('sold')
-        ;
+            ->add('sold');
     }
 
     public function configureOptions(OptionsResolver $resolver)
@@ -58,7 +63,7 @@ class PropertyType extends AbstractType
 
     public function getChoices()
     {
-        $choices = Property::HEAT; 
+        $choices = Property::HEAT;
         $output = [];
         foreach ($choices as $key => $value) {
             # code...

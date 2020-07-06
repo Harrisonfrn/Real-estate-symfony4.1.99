@@ -1,4 +1,4 @@
-{% cache 'property' ~ property.id property.updatedAt.timestamp|default(900) %}
+{% cache 'property' ~ property.id property.updatedAt.timestamp|default(1) %}
 
 <div class="card mb-4">
 	{% if property.picture %}
@@ -24,8 +24,12 @@
 		<div class="text-primary formattedPrice" style="font-weight: bold; font-size: 1rem;">
 			{{ property.formattedPrice }}
 			€
-			<a href="#" class="btn-link">
-				<i class="fa fa-heart-o"></i>
+			<a href="{{path('property.like', {'id': property.id})}}" class="btn-link js-like">
+				{% if app.user and property.isLikedByUSer(app.user) %}
+					<i class="fa fa-heart"></i>
+				{% else %}
+					<i class="fa fa-heart-o"></i>
+				{% endif %}
 			</a>
 		</div>
 	</div>

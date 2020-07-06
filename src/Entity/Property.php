@@ -21,7 +21,7 @@ class Property
     const HEAT = [
         0 => ' Électrique',
         1 => 'Gaz'
-    ]; 
+    ];
 
     /**
      * @ORM\Id()
@@ -154,7 +154,7 @@ class Property
         $this->pictures = new ArrayCollection();
         $this->likes = new ArrayCollection();
     }
-    
+
 
     public function getId(): ?int
     {
@@ -250,7 +250,8 @@ class Property
         return $this;
     }
 
-    public function getFormattedPrice(): string {
+    public function getFormattedPrice(): string
+    {
         return number_format($this->price, 0, '', ' ');
     }
 
@@ -382,11 +383,9 @@ class Property
     public function getPicture(): ?Picture
     {
         if ($this->pictures->isEmpty()) {
-           return null;
+            return null;
         }
-            return $this->pictures->first();
-        
-       
+        return $this->pictures->first();
     }
 
     public function addPicture(Picture $picture): self
@@ -395,7 +394,7 @@ class Property
             $this->pictures[] = $picture;
             $picture->setProperty($this);
         }
-        
+
         return $this;
     }
 
@@ -410,11 +409,11 @@ class Property
         }
         return $this;
     }
-    
+
 
     /**
      * @return mixed
-     */ 
+     */
     public function getPictureFiles()
     {
         return $this->pictureFiles;
@@ -424,10 +423,10 @@ class Property
      * Set the value of pictureFiles
      * @param mixed $pictureFiles
      * @return  Property
-     */ 
+     */
     public function setPictureFiles($pictureFiles)
     {
-        foreach ($pictureFiles as $pictureFile ) {
+        foreach ($pictureFiles as $pictureFile) {
             $picture = new Picture;
             $picture->setImageFile($pictureFile);
             $this->addPicture($picture);
@@ -514,5 +513,20 @@ class Property
         }
 
         return $this;
-    } 
+    }
+
+    /**
+     * Permet de savoir si un biens est liker par un user
+     *
+     * @param Users $users
+     * @return boolean
+     */
+    public function isLikedByUser(Users $users): bool
+    {
+        foreach ($this->likes as $like) {
+            if ($like->getUser() === $users) return true;
+        }
+
+        return false;
+    }
 }

@@ -42,7 +42,7 @@
 				<a class="navbar-brand" href="{{ path('home') }}"><img src="/images/HEARTHSTONE_PARTNERS_LOGO.PNG" alt=""></a>
 			</div>
 			<a href="{{ path('profil') }}" class="sidenav-link active">Mon compte</a>
-			<a href="#" class="sidenav-link">Mes favoris</a>
+			<a href="{{ path('profil_likedProperty')}}" class="sidenav-link">Mes favoris</a>
 			<a href="{{ path('home') }}" class="sidenav-link">Retour au site</a>
 			{% if app.user %}
 				<a href="{{ path('app_logout') }}" class="sidenav-link">Se déconnecter</a>

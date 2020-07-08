@@ -68,4 +68,16 @@ class ProfilController extends AbstractController
         }
         return $this->render('profil/editPass.html.twig');
     }
+
+    /**
+     * Affichage des biens sauvegardé
+     * @Route("/profil/favoris", name="profil_likedProperty")
+     *
+     * @return void
+     */
+    public function likedProperty(){
+
+        return $this->render('profil/likedProperty.html.twig');
+
+    }
 }

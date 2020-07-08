@@ -49,6 +49,7 @@ class AdminPropertyController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $property->setUsers($this->getUser());
             $this->em->persist($property);
             $this->em->flush();
             $this->addFlash('success', 'Bien créé avec succès');

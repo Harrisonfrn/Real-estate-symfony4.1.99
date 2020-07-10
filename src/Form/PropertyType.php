@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Category;
 use App\Entity\Option;
+use App\Entity\Owner;
 use App\Entity\Property;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -35,11 +36,20 @@ class PropertyType extends AbstractType
                 'multiple' => true,
                 'required' => false
             ])
-            ->add('category', EntityType::class, [
+
+            ->add('categories', EntityType::class, [
                 'class' => Category::class,
+                'choice_label' => 'name',
+                'multiple' => true,
+                'required' => false
+            ])
+
+            ->add('owner', EntityType::class, [
+                'class' => Owner::class,
                 'choice_label' => 'name',
                 'required' => false
             ])
+
             ->add('pictureFiles', FileType::class, [
                 'required' => false,
                 'multiple' => true

@@ -27,7 +27,8 @@ class PropertyRepository extends ServiceEntityRepository
      */
     public function findAllVisibleQuery(Search $search): Query 
     {
-        $query =  $this->findVisibleQuery();
+        $query =  $this->findVisibleQuery()
+                        ->orderBy('p.id', 'DESC');
 
         if ($search->getMaxPrice()) {
             $query = $query
@@ -60,8 +61,7 @@ class PropertyRepository extends ServiceEntityRepository
              }
         }
 
-        return $query->getQuery();
-            
+        return $query->getQuery();            
     }
 
     /**
@@ -70,6 +70,7 @@ class PropertyRepository extends ServiceEntityRepository
     public function findLatest(): array {
         return $this->findVisibleQuery()
             ->setMaxResults(24)
+            ->orderBy('p.id', 'DESC')
             ->getQuery()
             ->getResult();
     }

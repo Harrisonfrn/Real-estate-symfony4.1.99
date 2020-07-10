@@ -1,0 +1,46 @@
+{% extends "base.html.twig" %}
+
+{% block title 'Gerer les propriétaires'%}
+
+{% block body %}
+	<div class="container mt-4">
+		<h1>Gérer les propriétaires</h1>
+
+		{% for message in app.flashes('success')  %}
+			<div class="alert alert-success">
+				{{ message }}
+			</div>
+		{% endfor %}
+
+		<table class="table table-striped">
+			<thead>
+				<th>Nom</th>
+				<th>Prénom</th>
+				<th>Actions</th>
+			</thead>
+			<tbody>
+				{% for owner in owners %}
+					<tr>
+						<td>{{owner.name}}</td>
+						<td>{{owner.firstname}}</td>
+						<td>
+							<a href="{{path('admin.property.owner.edit', {id: owner.id})}}" class="btn btn-secondary">Editer</a>
+							<form method="POST" action="{{path('admin.owner.delete', {id: owner.id})}}" style="display: inline-block;" onsubmit="return confirm('Certains ?')">
+								<input type="hidden" name="_method" value="DELETE">
+								<input type="hidden" name="_token" value="{{csrf_token('delete' ~ owner.id)}}">
+								<button class="btn btn-danger">Supprimer</button>
+							</form>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+		<div class="text-right">
+			<a href="{{path('admin.property.owner.new')}}" class="btn btn-primary">Créer un nouveau propriétaire</a>
+
+		</div>
+	</div>
+
+
+{% endblock %}

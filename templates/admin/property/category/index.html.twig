@@ -1,12 +1,10 @@
-{% extends 'base.html.twig' %}
+{% extends "base.html.twig" %}
 
 {% block title 'Gerer les catégories'%}
 
-
 {% block body %}
-
 	<div class="container mt-4">
-		<h1>Gérer les catégories</h1>
+		<h1>Gérer les categories</h1>
 
 		{% for message in app.flashes('success')  %}
 			<div class="alert alert-success">
@@ -16,7 +14,7 @@
 
 		<table class="table table-striped">
 			<thead>
-				<th>Nom</th>
+				<th>Titre</th>
 				<th>Actions</th>
 			</thead>
 			<tbody>
@@ -25,7 +23,7 @@
 						<td>{{category.name}}</td>
 						<td>
 							<a href="{{path('admin.property.category.edit', {id: category.id})}}" class="btn btn-secondary">Editer</a>
-							<form method="POST" action="{{path('admin.property.delete', {id: category.id})}}" style="display: inline-block;" onsubmit="return confirm('Certain ?')">
+							<form method="POST" action="{{path('admin.category.delete', {id: category.id})}}" style="display: inline-block;" onsubmit="return confirm('Certains ?')">
 								<input type="hidden" name="_method" value="DELETE">
 								<input type="hidden" name="_token" value="{{csrf_token('delete' ~ category.id)}}">
 								<button class="btn btn-danger">Supprimer</button>
@@ -38,7 +36,9 @@
 
 		<div class="text-right">
 			<a href="{{path('admin.property.category.new')}}" class="btn btn-primary">Créer une nouvelle catégorie</a>
+
 		</div>
 	</div>
+
 
 {% endblock %}

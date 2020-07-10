@@ -133,11 +133,6 @@ class Property
     private $lng;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="properties")
-     */
-    private $category;
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Users", inversedBy="properties")
      */
     private $users;
@@ -147,12 +142,23 @@ class Property
      */
     private $likes;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Owner", inversedBy="property")
+     */
+    private $owner;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Category", inversedBy="properties")
+     */
+    private $categories;
+
     public function __construct()
     {
         $this->created_at = new \DateTime();
         $this->options = new ArrayCollection();
         $this->pictures = new ArrayCollection();
         $this->likes = new ArrayCollection();
+        $this->categories = new ArrayCollection();
     }
 
 
@@ -460,18 +466,6 @@ class Property
         return $this;
     }
 
-    public function getCategory(): ?Category
-    {
-        return $this->category;
-    }
-
-    public function setCategory(?Category $category): self
-    {
-        $this->category = $category;
-
-        return $this;
-    }
-
     public function getUsers(): ?Users
     {
         return $this->users;
@@ -528,5 +522,45 @@ class Property
         }
 
         return false;
+    }
+
+    public function getOwner(): ?Owner
+    {
+        return $this->owner;
+    }
+
+    public function setOwner(?Owner $owner): self
+    {
+        $this->owner = $owner;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Category[]
+     */
+    public function getCategories(): Collection
+    {
+        return $this->categories;
+    }
+
+    public function addCategory(Category $category): self
+    {
+        if (!$this->categories->contains($category)) {
+            $this->categories[] = $category;
+            $category->addProperty($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(Category $category): self
+    {
+        if ($this->categories->contains($category)) {
+            $this->categories->removeElement($category);
+            $category->removeProperty($this);
+        }
+
+        return $this;
     }
 }

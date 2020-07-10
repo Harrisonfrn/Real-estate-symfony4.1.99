@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * @ORM\Table(name="category")
  * @ORM\Entity(repositoryClass="App\Repository\CategoryRepository")
  */
 class Category
@@ -24,17 +25,13 @@ class Category
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Property", mappedBy="category")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Property", mappedBy="categories")
      */
     private $properties;
 
     public function __construct()
     {
         $this->properties = new ArrayCollection();
-    }
-
-    public function __toString() {
-        return $this->name;
     }
 
     public function getId(): ?int
@@ -66,7 +63,6 @@ class Category
     {
         if (!$this->properties->contains($property)) {
             $this->properties[] = $property;
-            $property->setCategory($this);
         }
 
         return $this;
@@ -76,10 +72,6 @@ class Category
     {
         if ($this->properties->contains($property)) {
             $this->properties->removeElement($property);
-            // set the owning side to null (unless already changed)
-            if ($property->getCategory() === $this) {
-                $property->setCategory(null);
-            }
         }
 
         return $this;

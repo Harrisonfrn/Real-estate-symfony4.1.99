@@ -49,16 +49,6 @@ class AdminCategoryController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="admin.property.category.show", methods={"GET"})
-     */
-    public function show(Category $category): Response
-    {
-        return $this->render('admin/property/category/show.html.twig', [
-            'category' => $category,
-        ]);
-    }
-
-    /**
      * @Route("/{id}/edit", name="admin.property.category.edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Category $category): Response
@@ -79,11 +69,12 @@ class AdminCategoryController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="category_delete", methods={"DELETE"})
+     * @Route("/{id}", name="admin.category.delete", methods={"DELETE"})
+     * @param Category $category
      */
     public function delete(Request $request, Category $category): Response
     {
-        if ($this->isCsrfTokenValid('admin/delete' . $category->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $category->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($category);
             $entityManager->flush();

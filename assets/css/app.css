@@ -129,8 +129,19 @@ a {
   padding-top: 1px;
 }
 
+label {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  margin-top: 2%;
+  /* text-align: left!important; */
+}
+
 .form-group {
   padding: 10px;
+}
+
+form {
+  padding: 3%;
 }
 
 button.btn.btn-primary {

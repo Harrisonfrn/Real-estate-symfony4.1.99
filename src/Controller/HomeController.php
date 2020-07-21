@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller;
 
 use App\Repository\PropertyRepository;
@@ -19,25 +20,35 @@ class HomeController extends AbstractController
     {
         $this->repository = $repository;
         $this->em = $em;
-       
     }
-    
+
     /**
      * @Route("/", name="home")
      * @param PropertyRepository $repository
      * @return Response
      */
 
-    
+
     public function index(PaginatorInterface $paginator, Request $request): Response
     {
         //$properties = $repository->findLatest();
         $properties = $paginator->paginate(
             $this->repository->findLatest(),
             $request->query->getInt('page', 1),
-            6);
+            6
+        );
         return $this->render('pages/home.html.twig', [
             'properties' => $properties
         ]);
+    }
+
+    /**
+     * @Route("/Qui-somme-nous", name="qsn")
+     */
+
+
+    public function qsn()
+    {
+        return $this->render('pages/qsn.html.twig');
     }
 }

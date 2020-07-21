@@ -33,16 +33,17 @@
 						<a class="nav-link {% if current_menu is defined and current_menu == 'properties' %} active {% endif %}" href="{{ path('property.index') }}">Acheter</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link {% if current_menu is defined and current_menu == 'properties' %} active {% endif %}" href="{{ path('property.index') }}">Produit clé</a>
+						<a class="nav-link" href="#">Produit clé</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link {% if current_menu is defined and current_menu == 'properties' %} active {% endif %}" href="{{ path('property.index') }}">Qui somme nous ?</a>
+						<a class="nav-link" href="{{path('qsn')}}">Qui somme nous ?</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link {% if current_menu is defined and current_menu == 'properties' %} active {% endif %}" href="{{ path('property.index') }}">Contact</a>
+						<a class="nav-link" href="mailto:contact@hearthstone.com">Contact</a>
+
 					</li>
 					<li class="nav-item">
-						<a class="nav-link {% if current_menu is defined and current_menu == 'properties' %} active {% endif %}" href="{{ path('profil') }}">Mon compte</a>
+						<a class="nav-link" href="{{ path('profil') }}">Mon compte</a>
 					</li>
 
 					{% if is_granted('ROLE_ADMIN') == true %}
@@ -76,6 +77,30 @@
 			</div>
 		</nav>
 		{% block body %}{% endblock %}
+
+		<div class="footer">
+			<footer class="container py-5">
+				<div class="row">
+					<div class="col-md-6">
+						<img src="/images/HEARTHSTONE_PARTNERS_LOGO.PNG" alt="">
+					</div>
+					<div class="col-md-6 information_footer">
+						<ul class="list-unstyled text-small">
+							<li>
+								<a class="text-muted" href="#">Information légales</a>
+							</li>
+							<li>
+								<a class="text-muted" href="#">Protection des données</a>
+							</li>
+							<li>
+								<a class="text-muted" href="#">Politique des cookies</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+			</footer>
+		</div>
 
 
 		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

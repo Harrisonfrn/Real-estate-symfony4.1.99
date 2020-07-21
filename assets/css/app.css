@@ -53,17 +53,16 @@ h1.discover {
   font-family: "Times New Roman", Times, serif;
 }
 
-.btn-primary {
-  color: #fff;
-  background-color: #343a40;
-  border-color: #343a40;
+a.btn.btn-primary.btn-home {
+  background-color: #9cb3ab;
+  border-color: #9cb3ab;
   margin-right: 1rem;
 }
 
-.btn-primary:hover {
+a.btn.btn-primary.btn-home:hover {
   color: #fff;
-  background-color: #1a1c1f;
-  border-color: #1a1c1f;
+  background-color: #163d42;
+  border-color: #163d42;
 }
 
 .btn-map {
@@ -71,6 +70,16 @@ h1.discover {
   display: flex;
   width: 50%;
   margin: auto;
+}
+
+/*
+    Home
+      catalogue
+*/
+button.btn.btn-primary.search_btn {
+  background-color: #315358;
+  border: 0;
+  margin: -1%;
 }
 
 /*
@@ -107,6 +116,10 @@ a {
 /* 
     Pagination
 */
+
+.pagination {
+  flex-wrap: wrap;
+}
 
 /*
     Admin Login
@@ -158,4 +171,75 @@ a.registerBtn {
 
 nav.navbar.primary.profil {
   background-color: blue !important;
+}
+
+/*
+    Off_market
+*/
+
+.jumbotron.off_market {
+  background-color: #9cb3ab;
+  padding: 0%;
+}
+
+.col-md-4.off {
+  padding-top: 10%;
+  color: white;
+}
+
+.container.off_market_container {
+  margin: 0%;
+  padding: 0%;
+}
+
+@media only screen and (max-width: 600px) {
+  .container.off_market_container {
+    margin: 0%;
+    padding: 0%;
+  }
+
+  .row.row_off_market {
+    width: 100%;
+    margin: 0;
+  }
+
+  .col-md-8.off_img {
+    padding: 0;
+  }
+
+  .col-md-4.off {
+    padding-bottom: 10%;
+  }
+}
+
+hr {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 5px solid rgba(0, 0, 0, 0.1);
+  margin-right: 80%;
+}
+
+button.off_btn {
+  background-color: #163d42;
+  border-radius: 10px;
+  border-style: none;
+  padding: 4%;
+}
+
+/*
+    Footer
+*/
+
+.footer {
+  background-color: #f7f4ed;
+}
+
+.py-5 {
+  padding-bottom: 3rem !important;
+  width: fit-content !important;
+}
+
+.col-md-6.information_footer {
+  padding-left: 15%;
 }

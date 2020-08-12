@@ -45,7 +45,7 @@ class SearchType extends AbstractType
             ])
             ->add('distance', ChoiceType::class, [
                 'label' => false,
-                'required' => false,
+                'required' => true,
                 'choices' => [
                     '10 km' => 10,
                     '1000 km' => 1000

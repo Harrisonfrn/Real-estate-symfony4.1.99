@@ -11,16 +11,18 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/admin/picture")
  */
-class AdminPictureController extends AbstractController{
+class AdminPictureController extends AbstractController
+{
 
     /**
      * @Route("/{id}", name="admin.picture.delete", methods={"DELETE"})
      */
-    public function delete(Request $request,Picture $picture){
+    public function delete(Request $request, Picture $picture)
+    {
 
-        $data = json_decode($request->getContent(), true); 
+        $data = json_decode($request->getContent(), true);
 
-        if ($this->isCsrfTokenValid('delete'.$picture->getId(), $data['_token'])) {
+        if ($this->isCsrfTokenValid('delete' . $picture->getId(), $data['_token'])) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($picture);
             $entityManager->flush();
@@ -29,5 +31,4 @@ class AdminPictureController extends AbstractController{
 
         return new JsonResponse(['error' => 'Token invalid'], 400);
     }
-
 }

@@ -4,11 +4,14 @@ namespace App\Controller;
 
 use App\Entity\Contact;
 use App\Entity\Property;
+use App\Entity\PropertyLike;
 use App\Entity\Search;
 use App\Form\ContactType;
 use App\Form\SearchType;
 use App\Notification\ContactNotification;
+use App\Repository\PropertyLikeRepository;
 use App\Repository\PropertyRepository;
+use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -28,7 +31,6 @@ class PropertyController extends AbstractController
     {
         $this->repository = $repository;
         $this->em = $em;
-       
     }
 
     /**
@@ -60,9 +62,9 @@ class PropertyController extends AbstractController
      */
     public function show(Property $property, string $slug, Request $request, ContactNotification $contactNotification): Response
     {
-        
-        if($property->getSlug() !== $slug){
-            return $this->redirectToRoute('property.show',[
+
+        if ($property->getSlug() !== $slug) {
+            return $this->redirectToRoute('property.show', [
                 'id' => $property->getId(),
                 'slug' => $property->getSlug()
             ], 301);
@@ -76,8 +78,8 @@ class PropertyController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $contactNotification->notify($contact);
             $this->addFlash('success', 'Votre email bien été envoyé');
-            
-            return $this->redirectToRoute('property.show',[
+
+            return $this->redirectToRoute('property.show', [
                 'id' => $property->getId(),
                 'slug' => $property->getSlug()
             ]);
@@ -88,5 +90,53 @@ class PropertyController extends AbstractController
             'current_menu'      => 'properties',
             'form'              => $form->createView()
         ]);
+    }
+
+    /**
+     * Permet de liker ou unliker un biens
+     *
+     * @Route("biens/{id}/like", name="property.like")
+     * 
+     * @param Property $property
+     * @param ObjectManager $objectManager
+     * @param PropertyLikeRepository $likeRepo
+     * @return Response
+     */
+    public function like(Property $property, EntityManagerInterface $em, PropertyLikeRepository $likeRepo): Response
+    {
+        $users = $this->getUser();
+
+        if (!$users) {
+            return $this->json([
+                'code' => 403,
+                'error' => 'Vous devez être connecter pour aimer un biens'
+            ]);
+        }
+
+        if ($property->isLikedByUser($users)) {
+            $like = $likeRepo->findOneBy([
+                'property' => $property,
+                'user' => $users
+            ]);
+
+            $em->remove($like);
+            $em->flush();
+
+            return $this->json([
+                'code' => 200,
+                'message' => 'like supprimé',
+            ], 200);
+        }
+
+        $like = new PropertyLike();
+        $like->setProperty($property)
+            ->setUser($users);
+
+        $em->persist($like);
+        $em->flush();
+        return $this->json([
+            'code' => 200,
+            'message' => 'bien liker'
+        ], 200);
     }
 }

@@ -1,0 +1,33 @@
+{% extends 'profil_base.html.twig' %}
+
+{% block title %}Hearthstone Partner's
+{% endblock %}
+
+{% block body %}
+
+	<div class="grix xs4 container">
+		{% for message in app.flashes('message')  %}
+			<div class="col-xs4">
+				<div class="p-3 my-2 rounded-2 success">{{message}}
+				</div>
+			</div>
+		{% endfor %}
+		<div class="col-xs4">
+			<h1>Profil de
+				{{app.user.firstname}}</h1>
+		</div>
+		<div class="col-xs1">Nom:
+			{{app.user.name}}</div>
+		<div class="col-xs1">Prénom:
+			{{app.user.firstname}}</div>
+		<div class="col-xs1">Email:
+			{{app.user.email}}</div>
+
+		<div class="col-xs4">
+			<a href="{{path('profil_edit')}}" class="btn blue push">Modifier le profil</a>
+			<a href="{{path('profil_edit_pass')}}" class="btn blue push">Modifier le mot de passe</a>
+		</div>
+	</div>
+
+
+{% endblock %}

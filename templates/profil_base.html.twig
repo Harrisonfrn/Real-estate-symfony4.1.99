@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			{% block title %}Hearthstone Partner's - Profil page
+			{% endblock %}
+
+		</title>
+
+
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"/>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/axentix@0.5.3/dist/css/axentix.min.css">
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('app') }}
+		{% endblock %}
+
+	</head>
+
+	<body class="layout with-sidenav fixed-sidenav">
+		<header>
+			<nav
+				class="navbar primary profil"><!--<a href="#" target="_blank" class="navbar-brand">Bonjour
+																														
+																																			{{app.user.firstname}}</a>
+																																		<div class="navbar-menu ml-auto">
+																																															<a class="navbar-link" href="#">Link 1</a>
+																																															<a class="navbar-link" href="#">Link 2</a>
+																																															<a class="navbar-link" href="#">Link 3</a>
+																																															<a class="navbar-link" href="#">Link 4</a>
+																																														</div>-->
+			</nav>
+		</header>
+
+
+		<div id="example-sidenav" class="sidenav large fixed white">
+			<div class="sidenav-header">
+				<button data-target="example-sidenav" class="sidenav-trigger">
+					<i class="fas fa-times"></i>
+				</button>
+				<a class="navbar-brand" href="{{ path('home') }}"><img src="/images/HEARTHSTONE_PARTNERS_LOGO.PNG" alt=""></a>
+			</div>
+			<a href="{{ path('profil') }}" class="sidenav-link active">Mon compte</a>
+			<a href="{{ path('profil_likedProperty')}}" class="sidenav-link">Mes favoris</a>
+			<a href="{{ path('home') }}" class="sidenav-link">Retour au site</a>
+			{% if app.user %}
+				<a href="{{ path('app_logout') }}" class="sidenav-link">Se déconnecter</a>
+
+			{% endif %}
+
+
+		</div>
+
+		<main>
+			<!-- Code here the main content -->
+			<button data-target="example-sidenav" class="btn press amaranth dark-1 sidenav-trigger hide-md-up">
+				Open sidenav
+			</button>
+			{% block body %}{% endblock %}
+		</main>
+
+		<footer class="footer primary">
+			Copyright © 2020 - Awebi
+		</footer>
+		<script src="https://cdn.jsdelivr.net/npm/axentix@0.5.3/dist/js/axentix.min.js"></script>
+		{% block javascripts %}
+			{{ encore_entry_script_tags('app') }}
+		{% endblock %}
+
+		<script>
+			var sidenav = new Sidenav('#example-sidenav');
+		</script>
+	</body>
+</html>

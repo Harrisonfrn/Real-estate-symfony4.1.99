@@ -70,11 +70,12 @@ class AdminOptionController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="option_delete", methods={"DELETE"})
+     * @Route("/{id}", name="admin.option.delete", methods={"DELETE"})
+     * @param Option $option
      */
     public function delete(Request $request, Option $option): Response
     {
-        if ($this->isCsrfTokenValid('admin/delete'.$option->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $option->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($option);
             $entityManager->flush();

@@ -3,43 +3,50 @@
 {% block title 'Hearthstone Partners'%}
 
 {% block body %}
-     <div class="jumbotron text-center">
-        <h1>Hearthstone Partners</h1>
-        <p>Découvrez nos biens à vendre</p>
-     </div>
+	<div class="jumbotron text-center head">
+		<h1 class="discover">DÉCOUVREZ NOS BIENS À VENDRE</h1>
+		<div class="btn-map">
+			<a class="btn btn-primary btn-home" href="{{ path('property.index') }}" role="button">Tout</a>
+			<a class="btn btn-primary btn-home" href="/biens?minSurface=&maxPrice=&address=Paris%2C+%C3%8Ele-de-France%2C+France&distance=10&lat=48.8546&lng=2.34771" role="button">Paris</a>
+			<a class="btn btn-primary btn-home" href="/biens?minSurface=&maxPrice=&address=Paris%2C+%C3%8Ele-de-France%2C+France&distance=10&lat=48.8546&lng=2.34771}" role="button">Ile de France</a>
 
-     <div class="container">
-        <div class="row">
-           {% for property in properties %}
-            <div class="col-md-4">
-               {% include 'property/_property.html.twig' %}
-            </div>
-           {% endfor %}
-        </div>
+		</div>
+	</div>
 
-            <div class="pagination justify-content-center">
-            {{ knp_pagination_render(properties) }}
-            </div>
-     </div>
 
-    <div class="jumbotron">
-        <div class="container">
-            <div class="row">
-                        <div class="col-md-8">
-                           <img src="images/empty.jpg" alt="Biens991122">
-                        </div>
+	<div class="container">
+		<div class="row estate-list">
+			{% for property in properties %}
+				<div class="col-md-4">
+					{% include 'property/_property.html.twig' %}
+				</div>
+			{% endfor %}
+		</div>
 
-                        <div class="col-md-4">
-                            <h3>LE OFF MARKET</h3>
-                            <hr>
-                            <p>Contactez-nous afin de connaître les biens en Off Market 
-                            que nous pouvons vous proposer.</p>
-                            <button><a href="mailto:contact@hearthstone.com">Contacter l'agence</a></button>
-                        </div>
-            </div>
-        </div>
-    </div>
+		<div class="pagination justify-content-center">
+			{{ knp_pagination_render(properties) }}
+		</div>
+	</div>
 
-      
+	<div class="jumbotron off_market">
+		<div class="container off_market_container">
+			<div class="row row_off_market">
+				<div class="col-md-8 off_img">
+					<img src="images/empty.jpg" alt="Biens991122">
+				</div>
+
+				<div class="col-md-4 off">
+					<h3>LE OFF MARKET</h3>
+					<hr>
+					<p>Contactez-nous afin de connaître les biens en Off Market 
+																																																																																				                                 que nous pouvons vous proposer.</p>
+					<button class="off_btn">
+						<a style="color: white;" href="mailto:contact@hearthstone.com">NOUS CONTACTER</a>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
 
 {% endblock %}

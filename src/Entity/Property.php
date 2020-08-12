@@ -21,7 +21,7 @@ class Property
     const HEAT = [
         0 => ' Électrique',
         1 => 'Gaz'
-    ]; 
+    ];
 
     /**
      * @ORM\Id()
@@ -132,12 +132,35 @@ class Property
      */
     private $lng;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Users", inversedBy="properties")
+     */
+    private $users;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\PropertyLike", mappedBy="property")
+     */
+    private $likes;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Owner", inversedBy="property")
+     */
+    private $owner;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Category", inversedBy="properties")
+     */
+    private $categories;
+
     public function __construct()
     {
         $this->created_at = new \DateTime();
         $this->options = new ArrayCollection();
         $this->pictures = new ArrayCollection();
+        $this->likes = new ArrayCollection();
+        $this->categories = new ArrayCollection();
     }
+
 
     public function getId(): ?int
     {
@@ -233,7 +256,8 @@ class Property
         return $this;
     }
 
-    public function getFormattedPrice(): string {
+    public function getFormattedPrice(): string
+    {
         return number_format($this->price, 0, '', ' ');
     }
 
@@ -365,11 +389,9 @@ class Property
     public function getPicture(): ?Picture
     {
         if ($this->pictures->isEmpty()) {
-           return null;
+            return null;
         }
-            return $this->pictures->first();
-        
-       
+        return $this->pictures->first();
     }
 
     public function addPicture(Picture $picture): self
@@ -378,7 +400,7 @@ class Property
             $this->pictures[] = $picture;
             $picture->setProperty($this);
         }
-        
+
         return $this;
     }
 
@@ -393,11 +415,11 @@ class Property
         }
         return $this;
     }
-    
+
 
     /**
      * @return mixed
-     */ 
+     */
     public function getPictureFiles()
     {
         return $this->pictureFiles;
@@ -407,10 +429,10 @@ class Property
      * Set the value of pictureFiles
      * @param mixed $pictureFiles
      * @return  Property
-     */ 
+     */
     public function setPictureFiles($pictureFiles)
     {
-        foreach ($pictureFiles as $pictureFile ) {
+        foreach ($pictureFiles as $pictureFile) {
             $picture = new Picture;
             $picture->setImageFile($pictureFile);
             $this->addPicture($picture);
@@ -442,5 +464,103 @@ class Property
         $this->lng = $lng;
 
         return $this;
-    } 
+    }
+
+    public function getUsers(): ?Users
+    {
+        return $this->users;
+    }
+
+    public function setUsers(?Users $users): self
+    {
+        $this->users = $users;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|PropertyLike[]
+     */
+    public function getLikes(): Collection
+    {
+        return $this->likes;
+    }
+
+    public function addLike(PropertyLike $like): self
+    {
+        if (!$this->likes->contains($like)) {
+            $this->likes[] = $like;
+            $like->setProperty($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLike(PropertyLike $like): self
+    {
+        if ($this->likes->contains($like)) {
+            $this->likes->removeElement($like);
+            // set the owning side to null (unless already changed)
+            if ($like->getProperty() === $this) {
+                $like->setProperty(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * Permet de savoir si un biens est liker par un user
+     *
+     * @param Users $users
+     * @return boolean
+     */
+    public function isLikedByUser(Users $users): bool
+    {
+        foreach ($this->likes as $like) {
+            if ($like->getUser() === $users) return true;
+        }
+
+        return false;
+    }
+
+    public function getOwner(): ?Owner
+    {
+        return $this->owner;
+    }
+
+    public function setOwner(?Owner $owner): self
+    {
+        $this->owner = $owner;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Category[]
+     */
+    public function getCategories(): Collection
+    {
+        return $this->categories;
+    }
+
+    public function addCategory(Category $category): self
+    {
+        if (!$this->categories->contains($category)) {
+            $this->categories[] = $category;
+            $category->addProperty($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(Category $category): self
+    {
+        if ($this->categories->contains($category)) {
+            $this->categories->removeElement($category);
+            $category->removeProperty($this);
+        }
+
+        return $this;
+    }
 }

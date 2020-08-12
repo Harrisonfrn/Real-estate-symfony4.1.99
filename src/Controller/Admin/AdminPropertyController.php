@@ -2,7 +2,7 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Option;
+
 use App\Entity\Property;
 use App\Form\PropertyType;
 use App\Repository\PropertyRepository;
@@ -18,7 +18,7 @@ class AdminPropertyController extends AbstractController
      * @var PropertyRepository
      */
 
-    private $repository; 
+    private $repository;
 
     private $em;
 
@@ -44,11 +44,12 @@ class AdminPropertyController extends AbstractController
      */
     public function new(Request $request)
     {
-        $property = new Property(); 
+        $property = new Property();
         $form = $this->createForm(PropertyType::class, $property);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $property->setUsers($this->getUser());
             $this->em->persist($property);
             $this->em->flush();
             $this->addFlash('success', 'Bien créé avec succès');
@@ -62,17 +63,16 @@ class AdminPropertyController extends AbstractController
     }
 
     /**
-     * @Route("/admin/{id}", name="admin.property.edit")
+     * @Route("/admin/{id}", name="admin.property.edit", requirements={"id"="\d+"})
      * @param Property $property
      * @param Request $request
      */
     public function edit(Property $property, Request $request)
     {
-        
 
         $form = $this->createForm(PropertyType::class, $property);
         $form->handleRequest($request);
-        
+
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->em->flush();

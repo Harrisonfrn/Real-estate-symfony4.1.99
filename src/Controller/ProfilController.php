@@ -75,9 +75,9 @@ class ProfilController extends AbstractController
      *
      * @return void
      */
-    public function likedProperty(){
+    public function likedProperty()
+    {
 
         return $this->render('profil/likedProperty.html.twig');
-
     }
 }

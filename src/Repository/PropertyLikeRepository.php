@@ -19,7 +19,6 @@ class PropertyLikeRepository extends ServiceEntityRepository
         parent::__construct($registry, PropertyLike::class);
     }
 
-    
 
     // /**
     //  * @return PropertyLike[] Returns an array of PropertyLike objects

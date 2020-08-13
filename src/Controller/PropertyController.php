@@ -106,13 +106,16 @@ class PropertyController extends AbstractController
     {
         $users = $this->getUser();
 
+        //Condition: impossible de liker un bien si non authentifier
         if (!$users) {
             return $this->json([
                 'code' => 403,
                 'error' => 'Vous devez être connecter pour aimer un biens'
-            ]);
+            ], 403);
         }
 
+
+        //logique de suppression du like
         if ($property->isLikedByUser($users)) {
             $like = $likeRepo->findOneBy([
                 'property' => $property,
@@ -128,6 +131,7 @@ class PropertyController extends AbstractController
             ], 200);
         }
 
+        //logique d'ajout de like
         $like = new PropertyLike();
         $like->setProperty($property)
             ->setUser($users);

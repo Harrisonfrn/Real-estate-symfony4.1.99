@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\PropertyLike;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\ORM\Query;
 
 /**
  * @method PropertyLike|null find($id, $lockMode = null, $lockVersion = null)
@@ -18,7 +19,6 @@ class PropertyLikeRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, PropertyLike::class);
     }
-
 
     // /**
     //  * @return PropertyLike[] Returns an array of PropertyLike objects
@@ -48,4 +48,5 @@ class PropertyLikeRepository extends ServiceEntityRepository
         ;
     }
     */
+
 }

@@ -170,7 +170,7 @@ a.registerBtn {
 */
 
 nav.navbar.primary.profil {
-  background-color: blue !important;
+  background-color: #003684!important;
 }
 
 /*
@@ -232,7 +232,7 @@ button.off_btn {
 */
 
 .footer {
-  background-color: #f7f4ed;
+  background-color: #003684;
 }
 
 .py-5 {

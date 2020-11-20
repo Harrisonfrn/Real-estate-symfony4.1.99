@@ -2,7 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Property;
+use App\Entity\PropertyLike;
 use App\Form\EditProfilType;
+use App\Repository\PropertyLikeRepository;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -10,6 +15,19 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class ProfilController extends AbstractController
 {
+
+
+    /**
+     * @var PropertyLikeRepository
+     */
+    private $repository;
+
+    public function __construct(PropertyLikeRepository $repository, EntityManagerInterface $em)
+    {
+        $this->repository = $repository;
+        $this->em = $em;
+    }
+
     /**
      * @Route("/profil", name="profil")
      */
@@ -78,6 +96,14 @@ class ProfilController extends AbstractController
     public function likedProperty()
     {
 
-        return $this->render('profil/likedProperty.html.twig');
+        $repository = $this->getDoctrine()->getRepository(PropertyLike::class);
+        $propertyLike = $repository->findAll();
+        $this->em->flush();
+        //dump($propertyLike);
+
+        return $this->render('profil/likedProperty.html.twig', [
+            'controller_name' => 'ProfilController',
+            'propertyLike' => $propertyLike,
+        ]);
     }
 }

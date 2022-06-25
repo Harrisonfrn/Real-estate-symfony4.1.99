@@ -17,7 +17,7 @@
         "cross-fetch": "^3.0.4",
         "jquery": "^3.5.0",
         "leaflet": "^1.6.0",
-        "node-fetch": "^2.6.1",
+        "node-fetch": "^2.6.7",
         "places.js": "^1.18.2",
         "select2": "^4.0.13",
         "slick-carousel": "^1.8.1"
